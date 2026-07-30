@@ -41,19 +41,21 @@ The following preprocessing steps were performed:
 
 **Key Insights**
 1. Overall Retention Declined
-Day 1 Retention decreased from 45.84% to 45.24% (-0.59%).
-Day 7 Retention decreased from 25.06% to 24.47% (-0.60%).
- Moving the first gate from Level 30 to Level 40 did not improve player retention. The decline in Day 7 Retention suggests a negative impact on long-term player retention.
-2. The Impact Differs by Player Progress
-Players in the 30–39 rounds group showed slightly higher retention after the gate was moved, while players in the 40–89 and 90+ rounds groups experienced lower retention.
-Insight: Delaying the gate only benefited a small segment of players but reduced long-term retention for more engaged players.
+- Day 1 Retention decreased from 45.84% to 45.24% (-0.59%).
+- Day 7 Retention decreased from 25.06% to 24.47% (-0.60%).
+- Moving the first gate from Level 30 to Level 40 did not improve player retention. The decline in Day 7 Retention suggests a negative impact on long-term player retention.
+  
+2. The Impact Differs by Player Progress: 
+- Players in the 30–39 rounds group showed slightly higher retention after the gate was moved, while players in the 40–89 and 90+ rounds groups experienced lower retention.
+- Delaying the gate only benefited a small segment of players but reduced long-term retention for more engaged players.
 
 3. Early Game Is the Biggest Retention Challenge
-Over 55% of players stopped within the first 1–29 rounds, and only 24.8% returned by Day 7.
-Insight: The largest retention loss occurs during the early-game experience, indicating that onboarding and early progression have a greater impact than gate placement.
+- Over 55% of players stopped within the first 1–29 rounds, and only 24.8% returned by Day 7.
+- The largest retention loss occurs during the early-game experience, indicating that onboarding and early progression have a greater impact than gate placement.
+
 4. Engagement Requires Further Validation
-The current dashboard does not compare Game Rounds Distribution between versions.
-Insight: Additional engagement analysis (e.g., Box Plot) is needed before concluding whether Gate 40 improves player engagement.
+- The current dashboard does not compare Game Rounds Distribution between versions.
+- Additional engagement analysis (e.g., Box Plot) is needed before concluding whether Gate 40 improves player engagement.
 ---
 ### 👥 Dashboard 2 – Customer Conversion Insights
 
