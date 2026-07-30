@@ -53,68 +53,9 @@ The following preprocessing steps were performed:
 - Over 55% of players stopped within the first 1–29 rounds, and only 24.8% returned by Day 7.
 - The largest retention loss occurs during the early-game experience, indicating that onboarding and early progression have a greater impact than gate placement.
 
-4. Engagement Requires Further Validation
-- The current dashboard does not compare Game Rounds Distribution between versions.
-- Additional engagement analysis (e.g., Box Plot) is needed before concluding whether Gate 40 improves player engagement.
----
-### 👥 Dashboard 2 – Customer Conversion Insights
 
-![Dashboard 2](dashboard2.png)
+## 🚀 Actionable Recommendations
 
-**Key Insights**
-- Website engagement is the most important factor influencing conversion; customers who view 5–6 pages and spend 6–10 minutes on the website achieve Conversion Rates above 91%.
-- Converted customers demonstrate significantly higher Website Visits, Email Engagement, and Previous Purchases than non-converted customers, indicating that customer engagement is a strong predictor of purchase behavior.
-- Customers aged 35–44 with medium income represent the highest-converting customer segment, making them the priority target for future marketing campaigns.
-- Returning customers with 3–5 previous purchases achieve higher conversion rates than first-time customers, highlighting the importance of effective Customer Retention strategies.
-
----
-### 💰 Dashboard 3 – Budget Optimization & Recommendations
-
-![Dashboard 3](dashboard3.png)
-
-**Key Insights**
-- Referral, PPC, and SEO provide the best investment performance by combining high Conversion Rates with low Cost per Conversion, making them the highest-priority channels for budget expansion.
-- The PPC – Conversion campaign combination delivers the highest cost efficiency, generating a large number of converted customers while maintaining a Customer Acquisition Cost (CAC) below the overall average.
-- Email and Social Media either produce lower conversion performance or incur higher acquisition costs than the other channels, indicating that these channels should be optimized or receive reduced investment.
-- The Marketing Action Matrix suggests that reallocating budget from lower-performing channels to Referral, PPC, and SEO would improve budget efficiency and maximize overall marketing performance.
-
-
-
-## 🎯 Actionable Recommendations
-
-Based on the analysis across the three dashboards, the following strategic recommendations are proposed to improve marketing performance and maximize budget efficiency.
-
-### 💰 1. Optimize Marketing Budget Allocation
-
-- Reallocate **10–15%** of the marketing budget from underperforming channels (**Social Media** and **Email**) to higher-performing channels.
-- Increase investment in **Referral** and **PPC**, particularly for **Conversion** campaigns, which consistently achieved the highest conversion rates and lower customer acquisition costs (CAC).
-- Continuously monitor Cost per Conversion (CAC) to ensure budget is allocated to the most efficient campaign-channel combinations.
-
----
-
-### 🌐 2. Improve Website Engagement & Conversion Rate Optimization (CRO)
-
-- Enhance website UI/UX to encourage visitors to:
-  - Stay on the website for **more than 6 minutes**.
-  - View **at least 5 pages per session**.
-- Optimize landing pages, navigation, and call-to-action (CTA) placement to increase customer engagement and improve conversion rates.
-
----
-
-### 👥 3. Strengthen Customer Targeting & Retention
-
-- Prioritize marketing campaigns targeting customers aged **35–44 years** with **medium income**, the highest-converting customer segment identified in the analysis.
-- Expand customer loyalty and retention programs for customers with **3–5 previous purchases**, as they demonstrate significantly higher conversion probabilities than first-time customers.
-- Increase personalized email campaigns and remarketing efforts to maintain long-term customer relationships and encourage repeat purchases.
-
----
-
-### 📈 Expected Business Impact
-
-Implementing these recommendations is expected to:
-
-- Improve overall marketing ROI.
-- Reduce customer acquisition costs (CAC).
-- Increase conversion rates through better customer targeting.
-- Enhance long-term customer retention and lifetime value.
-- Support data-driven marketing budget allocation decisions.
+- Keep the first gate at Level 30. The experiment showed that moving the gate to Level 40 did not improve overall retention and resulted in a lower Day 7 Retention.
+- Prioritize improving the early-game experience. Since over 55% of players are in the 1–29 rounds segment and this group experienced lower retention under Gate 40, optimizing onboarding, early progression, and player motivation is likely to have a greater impact than delaying the first gate.
+- Preserve progression pacing. Although players in the 30–39 rounds segment benefited from the delayed gate, the improvement was offset by lower retention among players in later stages, suggesting that the original gate placement provides a better gameplay pacing.
