@@ -57,8 +57,11 @@ The following preprocessing steps were performed:
 - Because this segment represents the majority of the player base, even a modest decline in retention had a significant impact on the overall experiment results.
 
 ## 🚀 Actionable Recommendations
+1. Keep the first gate at Level 30.
+- The experiment did not demonstrate an improvement in overall retention after moving the gate to Level 40. Retaining the current gate placement is the safer product decision based on the observed results.
 
-- Keep the first gate at Level 30, as moving it to Level 40 did not improve overall retention.
-- Investigate why players in the 1–29 rounds segment experienced lower retention, since this group represents the majority of the player base.
-- Further analyze player behavior after the first gate, as the retention improvements in the 30–39 rounds segment were not sustained in later stages.
-- Validate future game design changes through A/B testing and statistical significance before deploying them to all players.
+2. Investigate retention loss in the 1–29 rounds segment.
+- Since this group accounts for more than half of all players and experienced lower retention under Gate 40, further analysis should focus on understanding why these players disengage and identifying opportunities to improve their early gameplay experience.
+
+3. Further evaluate progression design with targeted A/B tests.
+- Although Gate 40 improved retention for players in the 30–39 rounds segment, the benefit did not translate into higher overall retention. Future experiments should evaluate other progression mechanics, such as gate difficulty, reward timing, or progression pacing, while validating results with statistical significance testing before deployment.
