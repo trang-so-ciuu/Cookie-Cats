@@ -43,19 +43,19 @@ The following preprocessing steps were performed:
 1. Overall Retention Declined
 - Day 1 Retention decreased from 45.84% to 45.24% (-0.59%).
 - Day 7 Retention decreased from 25.06% to 24.47% (-0.60%).
-- Moving the first gate from Level 30 to Level 40 did not improve player retention. The decline in Day 7 Retention suggests a negative impact on long-term player retention.
-  
-2. The Impact Differs by Player Progress: 
-- Players in the 30–39 rounds group showed slightly higher retention after the gate was moved, while players in the 40–89 and 90+ rounds groups experienced lower retention.
-- Delaying the gate only benefited a small segment of players but reduced long-term retention for more engaged players.
+- Moving the first gate from Level 30 to Level 40 did not improve overall player retention, particularly for long-term retention (Day 7).
 
-3. Early Game Is the Biggest Retention Challenge
-- Over 55% of players stopped within the first 1–29 rounds, and only 24.8% returned by Day 7.
-- The largest retention loss occurs during the early-game experience, indicating that onboarding and early progression have a greater impact than gate placement.
+2. The Impact Varied Across Player Segments
+- Players in the 30–39 rounds segment showed slightly higher retention under Gate 40, while the 40–89 and 90+ rounds segments experienced lower retention.
+- The delayed gate benefited only a small portion of players, but this improvement was outweighed by lower retention among players who progressed further.
 
+3. The Largest Player Segment Was Negatively Affected
+- More than 55% of players were in the 1–29 rounds segment, which also showed lower retention under Gate 40.
+- Because this is the largest player group, its lower retention contributed significantly to the overall decline in retention.
 
 ## 🚀 Actionable Recommendations
 
-- Keep the first gate at Level 30. The experiment showed that moving the gate to Level 40 did not improve overall retention and resulted in a lower Day 7 Retention.
-- Prioritize improving the early-game experience. Since over 55% of players are in the 1–29 rounds segment and this group experienced lower retention under Gate 40, optimizing onboarding, early progression, and player motivation is likely to have a greater impact than delaying the first gate.
-- Preserve progression pacing. Although players in the 30–39 rounds segment benefited from the delayed gate, the improvement was offset by lower retention among players in later stages, suggesting that the original gate placement provides a better gameplay pacing.
+- Keep the first gate at Level 30, as moving it to Level 40 did not improve overall retention.
+- Investigate why players in the 1–29 rounds segment experienced lower retention, since this group represents the majority of the player base.
+- Further analyze player behavior after the first gate, as the retention improvements in the 30–39 rounds segment were not sustained in later stages.
+- Validate future game design changes through A/B testing and statistical significance before deploying them to all players.
