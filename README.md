@@ -12,21 +12,19 @@ The analysis combines Python, SQL Server, and Power BI to perform data cleaning,
 
 ## ❓ Business Problem
 
-The Product Team wants to answer the following question:
+- The Product Team wants to answer the following question: Does moving the first gate from Level 30 to Level 40 improve player engagement and retention?
 
-Does moving the first gate from Level 30 to Level 40 improve player engagement and retention?
+- Changing game progression can influence player behavior. While delaying the first gate may allow players to enjoy uninterrupted gameplay for longer, it may also reduce the psychological motivation to return.
 
-Changing game progression can influence player behavior. While delaying the first gate may allow players to enjoy uninterrupted gameplay for longer, it may also reduce the psychological motivation to return.
-
-This experiment aims to determine whether the new gate placement produces measurable improvements before releasing the update to all players.
+- This experiment aims to determine whether the new gate placement produces measurable improvements before releasing the update to all players.
 
 ## 📁 Dataset
 
-userid :	Unique player ID
-version : 	gate_30 / gate_40
-sum_gamerounds :	Total game rounds played
-retention_1 : 	Returned after 1 day
-retention_7	: Returned after 7 days
+- userid :	Unique player ID
+- version : 	gate_30 / gate_40
+- sum_gamerounds :	Total game rounds played
+- retention_1 : 	Returned after 1 day
+- retention_7	: Returned after 7 days
 
 ## 🧹 Data Cleaning
 
@@ -42,11 +40,20 @@ The following preprocessing steps were performed:
 ![Dashboard 1](gamingdashboard.png)
 
 **Key Insights**
-- Referral and PPC are the most effective marketing channels, achieving the highest Conversion Rates (approximately 88%) while contributing the largest share of converted customers.
-- Conversion Campaigns consistently outperform other campaign types across all channels, maintaining Conversion Rates above 92%, with SEO – Conversion achieving the highest rate (94.03%).
-- Social Media and Email consume a significant portion of the marketing budget but generate lower conversion performance than the other channels, indicating opportunities for budget optimization.
-- Overall analysis indicates that the current marketing budget is not fully allocated based on conversion performance, creating opportunities to improve ROI through budget reallocation.
+1. Overall Retention Declined
+Day 1 Retention decreased from 45.84% to 45.24% (-0.59%).
+Day 7 Retention decreased from 25.06% to 24.47% (-0.60%).
+ Moving the first gate from Level 30 to Level 40 did not improve player retention. The decline in Day 7 Retention suggests a negative impact on long-term player retention.
+2. The Impact Differs by Player Progress
+Players in the 30–39 rounds group showed slightly higher retention after the gate was moved, while players in the 40–89 and 90+ rounds groups experienced lower retention.
+Insight: Delaying the gate only benefited a small segment of players but reduced long-term retention for more engaged players.
 
+3. Early Game Is the Biggest Retention Challenge
+Over 55% of players stopped within the first 1–29 rounds, and only 24.8% returned by Day 7.
+Insight: The largest retention loss occurs during the early-game experience, indicating that onboarding and early progression have a greater impact than gate placement.
+4. Engagement Requires Further Validation
+The current dashboard does not compare Game Rounds Distribution between versions.
+Insight: Additional engagement analysis (e.g., Box Plot) is needed before concluding whether Gate 40 improves player engagement.
 ---
 ### 👥 Dashboard 2 – Customer Conversion Insights
 
