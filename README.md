@@ -40,18 +40,21 @@ The following preprocessing steps were performed:
 ![Dashboard 1](gamingdashboard.png)
 
 **Key Insights**
-1. Overall Retention Declined
+1. Moving the First Gate to Level 40 Reduced Overall Retention
 - Day 1 Retention decreased from 45.84% to 45.24% (-0.59%).
 - Day 7 Retention decreased from 25.06% to 24.47% (-0.60%).
-- Moving the first gate from Level 30 to Level 40 did not improve overall player retention, particularly for long-term retention (Day 7).
+- Moving the first gate from Level 30 to Level 40 did not improve player retention. While the decline in Day 1 Retention was relatively small, the lower Day 7 Retention indicates a negative impact on long-term player retention.
 
-2. The Impact Varied Across Player Segments
-- Players in the 30–39 rounds segment showed slightly higher retention under Gate 40, while the 40–89 and 90+ rounds segments experienced lower retention.
-- The delayed gate benefited only a small portion of players, but this improvement was outweighed by lower retention among players who progressed further.
+2. The Impact of Gate Placement Varied Across Player Segments
+- Player response differed depending on progression stage.
+- Players in the 30–39 rounds segment showed higher retention under Gate 40 (+0.85% Day 1, +0.44% Day 7).
+- Players in the 40–89 rounds segment experienced lower retention at both Day 1 (-1.40%) and Day 7 (-0.89%).
+- The 90+ rounds segment showed a mixed result, with higher Day 1 Retention (+1.34%) but lower Day 7 Retention (-1.21%).
+- Delaying the gate benefited players immediately before the new gate, but the improvement was not sustained across later progression stages or reflected in overall retention.
 
-3. The Largest Player Segment Was Negatively Affected
-- More than 55% of players were in the 1–29 rounds segment, which also showed lower retention under Gate 40.
-- Because this is the largest player group, its lower retention contributed significantly to the overall decline in retention.
+3. The Largest Player Segment Contributed Most to the Overall Decline
+- More than 55% of players belonged to the 1–29 rounds segment, making it the largest player group. This segment also recorded lower retention under Gate 40 (-1.13% Day 1 and -0.53% Day 7).
+- Because this segment represents the majority of the player base, even a modest decline in retention had a significant impact on the overall experiment results.
 
 ## 🚀 Actionable Recommendations
 
