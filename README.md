@@ -37,7 +37,7 @@ The following preprocessing steps were performed:
 
 ## 📊 Dashboard Architecture & Key Visuals
 
-![Dashboard 1](gamingdashboard.png)
+![Dashboard 1](gaming.png)
 
 **Key Insights**
 1. Moving the First Gate to Level 40 Reduced Overall Retention
