@@ -1,67 +1,67 @@
-# 🎮 Player Retention & Engagement Analysis
-## 🛠️ Tools Used
-- Python 
-- SQL Server
-- Power BI
-- DAX
-## 📌 Project Overview
+# Player Retention & Engagement Analysis
 
-This project analyzes an A/B testing experiment conducted in the mobile game Cookie Cats. The goal is to evaluate whether moving the first progression gate from Level 30 to Level 40 improves player engagement and retention.
+An A/B-test analysis of whether moving Cookie Cats' first progression gate from level 30 to
+level 40 improves player retention. The project combines reproducible Python analysis, SQL
+Server queries, and a Power BI dashboard for product stakeholders.
 
-The analysis combines Python, SQL Server, and Power BI to perform data cleaning, exploratory analysis, statistical testing, and interactive dashboard visualization.
+![Player retention dashboard](gaming.png)
 
-## ❓ Business Problem
+## Decision summary
 
-- The Product Team wants to answer the following question: Does moving the first gate from Level 30 to Level 40 improve player engagement and retention?
+| Metric | Gate 30 | Gate 40 | Difference | p-value | Result |
+|---|---:|---:|---:|---:|---|
+| Day 1 retention | 45.84% | 45.24% | -0.59 pp | 0.0728 | Not statistically significant |
+| Day 7 retention | 25.06% | 24.47% | -0.60 pp | 0.0384 | Statistically significant |
 
-- Changing game progression can influence player behavior. While delaying the first gate may allow players to enjoy uninterrupted gameplay for longer, it may also reduce the psychological motivation to return.
+Gate 40 did not improve either retention metric. The Day 7 decline is statistically
+significant at the 5% level, so the recommended product decision is to retain Gate 30 and
+test other progression mechanics.
 
-- This experiment aims to determine whether the new gate placement produces measurable improvements before releasing the update to all players.
+The dashboard also segments players by observed game rounds. These segment views are
+descriptive only: game rounds are measured after treatment and must not be interpreted as
+causal treatment effects.
 
-## 📁 Dataset
+## Data quality policy
 
-- userid :	Unique player ID
-- version : 	gate_30 / gate_40
-- sum_gamerounds :	Total game rounds played
-- retention_1 : 	Returned after 1 day
-- retention_7	: Returned after 7 days
+The public Cookie Cats dataset contains 90,189 randomized players. Download it from the
+[Kaggle dataset
+page](https://www.kaggle.com/datasets/mursideyarkin/mobile-games-ab-testing-cookie-cats)
+and save it as `data/cookie_cats.csv`.
 
-## 🧹 Data Cleaning
+The analysis validates required columns, unique player IDs, treatment values, Boolean
+retention values, and non-negative game rounds. Retention analysis keeps every row with a
+valid retention outcome. Engagement analysis uses complete cases for `sum_gamerounds`;
+missing rounds are never imputed from retention outcomes.
 
-The following preprocessing steps were performed:
-- Checked missing values.
-- Checked duplicate players.
-- Converted Boolean values (True/False) into Binary (1/0).
-- Investigated missing values in sum_gamerounds.
-- Excluded missing game rounds only for engagement analysis to avoid creating synthetic player behavior.
+## Reproduce the analysis
 
-## 📊 Dashboard Architecture & Key Visuals
+Python 3.11 or later is sufficient; the script uses only the standard library.
 
-![Dashboard 1](gaming.png)
+```bash
+python analysis.py --input data/cookie_cats.csv --output output
+python -m unittest discover -s tests -v
+```
 
-**Key Insights**
-1. Moving the First Gate to Level 40 Reduced Overall Retention
-- Day 1 Retention decreased from 45.84% to 45.24% (-0.59%).
-- Day 7 Retention decreased from 25.06% to 24.47% (-0.60%).
-- Moving the first gate from Level 30 to Level 40 did not improve player retention. While the decline in Day 1 Retention was relatively small, the lower Day 7 Retention indicates a negative impact on long-term player retention.
+Outputs:
 
-2. The Impact of Gate Placement Varied Across Player Segments
-- Player response differed depending on progression stage.
-- Players in the 30–39 rounds segment showed higher retention under Gate 40 (+0.85% Day 1, +0.44% Day 7).
-- Players in the 40–89 rounds segment experienced lower retention at both Day 1 (-1.40%) and Day 7 (-0.89%).
-- The 90+ rounds segment showed a mixed result, with higher Day 1 Retention (+1.34%) but lower Day 7 Retention (-1.21%).
-- Delaying the gate benefited players immediately before the new gate, but the improvement was not sustained across later progression stages or reflected in overall retention.
+- `output/retention_summary.csv`: group sizes, retention rates, differences, z-statistics,
+  and two-sided p-values.
+- `output/progress_summary.csv`: descriptive retention by version and rounds bucket.
 
-3. The Largest Player Segment Contributed Most to the Overall Decline
-- More than 55% of players belonged to the 1–29 rounds segment, making it the largest player group. This segment also recorded lower retention under Gate 40 (-1.13% Day 1 and -0.53% Day 7).
-- Because this segment represents the majority of the player base, even a modest decline in retention had a significant impact on the overall experiment results.
+Run `gaming.sql` in SQL Server after importing the validated data as `dbo.gaming_data`.
+Open `gaming.pbix` to inspect the interactive report.
 
-## 🚀 Actionable Recommendations
-1. Keep the first gate at Level 30.
-- The experiment did not demonstrate an improvement in overall retention after moving the gate to Level 40. Retaining the current gate placement is the safer product decision based on the observed results.
+## Repository contents
 
-2. Investigate retention loss in the 1–29 rounds segment.
-- Since this group accounts for more than half of all players and experienced lower retention under Gate 40, further analysis should focus on understanding why these players disengage and identifying opportunities to improve their early gameplay experience.
+- `analysis.py` — validation, KPI calculation, A/B significance tests, and CSV exports.
+- `gaming.sql` — explicit, independently runnable SQL Server queries.
+- `gaming.pbix` and `gaming.png` — interactive dashboard and preview.
+- `tests/` — behavior tests for validation and metric calculations.
 
-3. Further evaluate progression design with targeted A/B tests.
-- Although Gate 40 improved retention for players in the 30–39 rounds segment, the benefit did not translate into higher overall retention. Future experiments should evaluate other progression mechanics, such as gate difficulty, reward timing, or progression pacing, while validating results with statistical significance testing before deployment.
+## Method notes
+
+- Randomization balance is checked using treatment group counts.
+- Day 1 and Day 7 retention are tested with two-sided two-proportion z-tests.
+- Statistical significance and practical effect size are reported together.
+- This dataset contains retention outcomes, not DAU/MAU time series; DAU and MAU are
+  therefore not fabricated or inferred.
