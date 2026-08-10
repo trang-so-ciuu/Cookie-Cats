@@ -1,80 +1,80 @@
-﻿--1. Total player
-SELECT COUNT(*) AS TotalPlayers
-FROM [dbo].[gaming_data]
+-- SQL Server queries for the validated Cookie Cats experiment dataset.
 
---2. Phân bố người chơi theo Version
+-- 1. Experiment sample and treatment allocation.
 SELECT
     version,
-    COUNT(*) AS Players,
-    ROUND(
-        COUNT(*) * 100.0 /
-        SUM(COUNT(*)) OVER(),
-        2
-    ) AS Percentage
-FROM [dbo].[gaming_data]
-GROUP BY version;
+    COUNT(*) AS players,
+    ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS player_share_pct
+FROM dbo.gaming_data
+GROUP BY version
+ORDER BY version;
 
---3.D1 & D7 Retention theo Version
+-- 2. Primary retention metrics by treatment.
 SELECT
     version,
-    ROUND(
-        AVG(CAST(retention_1 AS FLOAT))*100,
-        2
-    ) AS D1_Retention,
-    ROUND(
-        AVG(CAST(retention_7 AS FLOAT))*100,
-        2
-    ) AS D7_Retention
+    COUNT(*) AS players,
+    ROUND(100.0 * AVG(CAST(retention_1 AS float)), 2) AS day_1_retention_pct,
+    ROUND(100.0 * AVG(CAST(retention_7 AS float)), 2) AS day_7_retention_pct
+FROM dbo.gaming_data
+GROUP BY version
+ORDER BY version;
 
-FROM [dbo].[gaming_data]
-GROUP BY version;
+-- 3. Descriptive progress distribution. Missing rounds remain visible.
+WITH player_progress AS (
+    SELECT
+        userid,
+        version,
+        retention_1,
+        retention_7,
+        CASE
+            WHEN sum_gamerounds IS NULL THEN 'Missing'
+            WHEN sum_gamerounds = 0 THEN '0'
+            WHEN sum_gamerounds BETWEEN 1 AND 29 THEN '1-29'
+            WHEN sum_gamerounds BETWEEN 30 AND 39 THEN '30-39'
+            WHEN sum_gamerounds BETWEEN 40 AND 89 THEN '40-89'
+            ELSE '90+'
+        END AS rounds_bucket
+    FROM dbo.gaming_data
+)
+SELECT
+    rounds_bucket,
+    COUNT(*) AS players,
+    ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS player_share_pct
+FROM player_progress
+GROUP BY rounds_bucket
+ORDER BY
+    CASE rounds_bucket
+        WHEN '0' THEN 1
+        WHEN '1-29' THEN 2
+        WHEN '30-39' THEN 3
+        WHEN '40-89' THEN 4
+        WHEN '90+' THEN 5
+        ELSE 6
+    END;
 
---4. Player Distribution theo Rounds Bucket
-WITH PlayerProgress AS (
-    SELECT *,
+-- 4. Descriptive retention by treatment and observed progress.
+-- Rounds are measured after treatment, so this is not a causal subgroup estimate.
+WITH player_progress AS (
+    SELECT
+        version,
+        retention_1,
+        retention_7,
         CASE
             WHEN sum_gamerounds = 0 THEN '0'
             WHEN sum_gamerounds BETWEEN 1 AND 29 THEN '1-29'
             WHEN sum_gamerounds BETWEEN 30 AND 39 THEN '30-39'
             WHEN sum_gamerounds BETWEEN 40 AND 89 THEN '40-89'
             ELSE '90+'
-        END AS RoundsBucket
-    FROM [dbo].[gaming_data]
+        END AS rounds_bucket
+    FROM dbo.gaming_data
+    WHERE sum_gamerounds IS NOT NULL
 )
-
-
-SELECT pp.RoundsBucket ,COUNT(*) AS Players
-FROM [dbo].[gaming_data] as gm , PlayerProgress as pp
-where pp.userid = gm.userid
-GROUP BY pp.RoundsBucket
-
--- 5.Retention theo Progress
-SELECT pp.RoundsBucket,
-    ROUND(AVG(CAST(gm.retention_1 AS FLOAT))*100,2) AS D1_Retention,
-    ROUND(AVG(CAST(gm.retention_7 AS FLOAT))*100, 2) AS D7_Retention
-FROM [dbo].[gaming_data] as gm , PlayerProgress as pp
-where pp.userid = gm.userid
-GROUP BY pp.RoundsBucket
-
---6. Gate30 và Gate40 khác nhau thế nào theo từng Progress Stage?
-SELECT pp.RoundsBucket,
-        gm.version,
-        ROUND( AVG(CAST(gm.retention_1 AS FLOAT))*100, 2) AS D1,
-        ROUND( AVG(CAST(gm.retention_7 AS FLOAT))*100,2) AS D7
-FROM [dbo].[gaming_data] as gm, PlayerProgress as pp
-where pp.userid = gm.userid
-GROUP BY pp.RoundsBucket, gm.version;
-
---7. Người chơi rơi ở đâu?
-
-SELECT pp.RoundsBucket,
-        gm.version,
-        COUNT(*) AS Installed,
-    SUM(gm.retention_1) AS Day1Players,
-    SUM(gm.retention_7) AS Day7Players,
-    ROUND(AVG(CAST(retention_1 AS FLOAT))*100,2) AS Day1Retention,
-    ROUND(AVG(CAST(retention_7 AS FLOAT))*100,2) AS Day7Retention
-FROM [dbo].[gaming_data] as gm, PlayerProgress as pp
-where pp.userid = gm.userid
-GROUP BY pp.RoundsBucket, gm.version;
-
+SELECT
+    rounds_bucket,
+    version,
+    COUNT(*) AS players,
+    ROUND(100.0 * AVG(CAST(retention_1 AS float)), 2) AS day_1_retention_pct,
+    ROUND(100.0 * AVG(CAST(retention_7 AS float)), 2) AS day_7_retention_pct
+FROM player_progress
+GROUP BY rounds_bucket, version
+ORDER BY rounds_bucket, version;
